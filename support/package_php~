@@ -63,7 +63,6 @@ build_command=$(cat <<BUILD_CMD
     --with-config-file-scan-dir=/app/vendor/php/etc/conf.d \
     --enable-intl \
     --with-gd \
-    --with-gettext \
     --with-mysql \
     --with-mysqli \
     --with-pdo-mysql \
