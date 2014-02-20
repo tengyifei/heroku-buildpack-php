@@ -43,7 +43,7 @@ build_ext() {
         && mkdir -p "/tmp/out/$ext_dir" \
         && mkdir -p "/tmp/out/etc/conf.d" \
         && ./cond_download.sh ${ext_name} ${php_package} \
-	&& tar -xzf ${ext_name}.tar.gz -C /app/vendor/php \
+	&& tar -xzf ${ext_name}.tgz -C /app/vendor/php \
         && PREFIX="/tmp/out" EXT_DIR="/tmp/out/$ext_dir" ./build.sh
 EOF
     )

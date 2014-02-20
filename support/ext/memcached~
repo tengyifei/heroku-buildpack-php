@@ -11,10 +11,18 @@ mkdir -p /app/vendor/libmemcached
 curl "https://s3.amazonaws.com/php-buildpack-tyf-us/package/libmemcached-1.0.18.tgz" \
     | tar xzv -C /app/vendor/libmemcached
 
+tmp_pwd = $(pwd)
+
+cd /app/vendor/libmemcached/libmemcached-1.0.18
+./configure
+make
+make install
+
+cd ${tmp_pwd}
+
 cd php-memcached-${php_memcached_version}
 /app/vendor/php/bin/phpize
 ./configure --with-php-config=/app/vendor/php/bin/php-config \
-            --with-libmemcached-dir=/app/vendor/libmemcached \
             --enable-memcached
 
 make

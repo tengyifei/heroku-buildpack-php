@@ -233,6 +233,7 @@ AVAILABLE_PHP_VERSIONS=$(curl "http://${S3_BUCKET}.s3.amazonaws.com/manifest.php
 AVAILABLE_NGINX_VERSIONS=$(curl "http://${S3_BUCKET}.s3.amazonaws.com/manifest.nginx" 2> /dev/null)
 
 MCRYPT_VERSION="2.5.8"
+MEMCACHED_VERSION="1.0.17"
 PHP_VERSION="default"
 NGINX_VERSION="default"
 DOCUMENT_ROOT=
