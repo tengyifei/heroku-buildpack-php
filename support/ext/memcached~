@@ -3,6 +3,8 @@
 php_memcached_version=40ce9b4633de5d70f056e4d434d9b064263348d0
 
 echo "Memcached ext installing..."
+tmp_pwd="$( pwd )"
+echo "$tmp_pwd"
 
 curl -L "https://github.com/andreiz/php-memcached/archive/${php_memcached_version}.tar.gz" \
     | tar xzv
@@ -11,18 +13,16 @@ mkdir -p /app/vendor/libmemcached
 curl "https://s3.amazonaws.com/php-buildpack-tyf-us/package/libmemcached-1.0.18.tgz" \
     | tar xzv -C /app/vendor/libmemcached
 
-tmp_pwd = $(pwd)
-
-cd /app/vendor/libmemcached/libmemcached-1.0.18
-./configure
+cd /app/vendor/libmemcached/libmemcached-1.0.18/
+./configure --prefix="/app/vendor/libmemcached"
 make
 make install
 
-cd ${tmp_pwd}
-
+cd "$tmp_pwd"
 cd php-memcached-${php_memcached_version}
 /app/vendor/php/bin/phpize
 ./configure --with-php-config=/app/vendor/php/bin/php-config \
+            --with-libmemcached-dir=/app/vendor/libmemcached \
             --enable-memcached
 
 make
