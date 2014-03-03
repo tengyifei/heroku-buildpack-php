@@ -29,7 +29,7 @@ vulcan build --verbose \
     --prefix /app/vendor/libmemcached \
     --source "$tempdir" \
     --output "$tempdir/libmemcached-${memcached_version}.tgz" \
-    --command "cd libmemcached-${memcached_version} && mkdir -p /app/vendor/libmemcached && ./configure --without-memcached --prefix=/app/vendor/libmemcached && make && make install"
+    --command "cd libmemcached-${memcached_version} && mkdir -p /app/vendor/libmemcached && ./configure --enable-sasl --without-memcached --prefix=/app/vendor/libmemcached && make && make install"
 
 s3_path=s3://$S3_BUCKET/package/libmemcached-${memcached_version}.tgz
 
